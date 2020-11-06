@@ -9,8 +9,11 @@ import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
+
+    //Extraemos el mensage de error para mostrarlo si aglo sucede
     const { msgError } = useSelector( state => state.ui );
 
+    //Establecemos el manejo del form y unos valores por defecto
     const [ formValues, handleInputChange ] = useForm({
         name: 'Hernando',
         email: 'nando@gmail.com',
@@ -18,11 +21,14 @@ export const RegisterScreen = () => {
         password2: '123456',
     });
 
+    //Extraemos los names de cada input para asignarlos a sus respectivas cajas
     const { name ,email ,password ,password2 } = formValues;
 
     const handleRegister = (e) => {
         e.preventDefault();
 
+        //Si el formualio es correcto, realizamos el registo
+        //ANALIZAR: startRegisterWithEmailPasswordName
         if ( isFormValid() ) {
             dispatch( startRegisterWithEmailPasswordName(email, password, name) );
         }
@@ -30,11 +36,12 @@ export const RegisterScreen = () => {
     }
 
     const isFormValid = () => {
-        
+        //validación del formulario
         if ( name.trim().length === 0 ) {
             dispatch( setError('Name is required') )
             return false;
         } else if ( !validator.isEmail( email ) ) {
+            //si no es un email, establecemos un error
             dispatch( setError('Email is not valid') )
             return false;
         } else if ( password !== password2 || password.length < 5 ) {
@@ -42,6 +49,7 @@ export const RegisterScreen = () => {
             return false
         }
         
+        //Como todo esta bien, removemos el error y retornamos true para decir que todo paso
         dispatch( removeError() );
        return true;
     }
@@ -53,6 +61,7 @@ export const RegisterScreen = () => {
             <form onSubmit={ handleRegister }>
 
                 {
+                    //En caso de que el error sea diferente a null, lo mostramos
                     msgError &&
                     (
                         <div className="auth__alert-error">
@@ -109,7 +118,7 @@ export const RegisterScreen = () => {
                 </button>
 
                
-
+                {/* Hacemos un enlace de navegación por si ya tiene cuenta */}
                 <Link 
                     to="/auth/login"
                     className="link"

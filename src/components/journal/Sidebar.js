@@ -8,12 +8,17 @@ import { startNewNote } from '../../actions/notes';
 export const Sidebar = () => {
 
     const dispatch = useDispatch();
+
+    //Extraemos el name del usuario de nuestro state.auth (donde se guarda la info de inicio de sesión)
     const { name } = useSelector(state => state.auth);
 
+    //Cerramos la sesión del usuario
     const hanleLogout = () => {
         dispatch(startLogout())
     };
 
+    //Creamos el mmetodo para agregar una nueva nota
+    //puedes ver como la crea analizando startNewNote
     const handleAddNew = () => {
         dispatch(startNewNote());
     };

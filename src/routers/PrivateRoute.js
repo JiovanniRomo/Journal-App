@@ -11,6 +11,8 @@ export const PrivateRoute = ({
 }) => {
 
     return (
+
+        //SI esta autenticado (true) renderizamos el componente que quiera verificar
         <Route { ...rest }
             component={ (props) => (
                 ( isAuthenticated )

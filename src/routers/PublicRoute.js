@@ -11,6 +11,7 @@ export const PublicRoute = ({
 }) => {
 
     return (
+        //Si esta autenticado, redirigimos, sino, cargamos otra cosa
         <Route { ...rest }
             component={ (props) => (
                 ( isAuthenticated )

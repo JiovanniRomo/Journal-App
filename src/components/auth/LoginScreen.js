@@ -8,22 +8,30 @@ import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
 export const LoginScreen = () => {
 
     const dispatch = useDispatch();
-    const { loading } = useSelector( state => state.ui );
 
-    const [ formValues, handleInputChange ] = useForm({
+    //Extraemos el loading para advertir al usuario que espere
+    const { loading } = useSelector(state => state.ui);
+
+    //Hacemos el manejo del form y le damos unos valores por defecto
+    const [formValues, handleInputChange] = useForm({
         email: 'test@test.com',
         password: '123456'
     });
 
+    //Extraemos cada valor para después asignarselo a sus inputs
     const { email, password } = formValues;
 
+    //Esto por si inicia sesión con email y password
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch( startLoginEmailPassword( email, password ) );
+
+        //enviamos el email y password para verfificarlos con el auth
+        dispatch(startLoginEmailPassword(email, password));
     }
 
+    //Esto por si inicia sesión con su cuenta de google
     const handleGoogleLogin = () => {
-        dispatch( startGoogleLogin() );
+        dispatch(startGoogleLogin());
     }
 
 
@@ -31,43 +39,46 @@ export const LoginScreen = () => {
         <>
             <h3 className="auth__title">Login</h3>
 
-            <form onSubmit={ handleLogin }>
+            <form onSubmit={handleLogin}>
 
-                <input 
+                <input
                     type="text"
                     placeholder="Email"
                     name="email"
                     className="auth__input"
                     autoComplete="off"
-                    value={ email }
-                    onChange={ handleInputChange }
+                    value={email}
+                    onChange={handleInputChange}
                 />
 
-                <input 
+                <input
                     type="password"
                     placeholder="Password"
                     name="password"
                     className="auth__input"
-                    value={ password }
-                    onChange={ handleInputChange }
+                    value={password}
+                    onChange={handleInputChange}
                 />
 
 
+                {/* Como estamos esperando a recibir la información, 
+                    nos aseguramos que el usuario no pueda volver a enviarla
+                */}
                 <button
                     type="submit"
                     className="btn btn-primary btn-block"
-                    disabled={ loading }
+                    disabled={loading}
                 >
                     Login
                 </button>
 
-                
+
                 <div className="auth__social-networks">
                     <p>Login with social networks</p>
 
-                    <div 
+                    <div
                         className="google-btn"
-                        onClick={ handleGoogleLogin }
+                        onClick={handleGoogleLogin}
                     >
                         <div className="google-icon-wrapper">
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
@@ -78,11 +89,12 @@ export const LoginScreen = () => {
                     </div>
                 </div>
 
-                <Link 
+                {/* Hacemos un botón de navegación por si no tiene cuenta */}
+                <Link
                     to="/auth/register"
                     className="link"
                 >
-                    Create new account    
+                    Create new account
                 </Link>
 
             </form>

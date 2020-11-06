@@ -8,6 +8,9 @@ import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
 
 export const AuthRouter = () => {
+
+    // se encarga de la navegación entre el register o el login, es una ruta publica
+
     return (
         <div className="auth__main">
             <div className="auth__box-container">

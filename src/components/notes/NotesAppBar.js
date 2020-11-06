@@ -5,8 +5,12 @@ import { startSetNote } from '../../actions/notes';
 export const NotesAppBar = () => {
 
     const dispatch = useDispatch();
+
+    //extraemos la nota activa ya para que el usuario la modifique
     const {active} = useSelector( state => state.notes );
 
+    //Una vez ha modificado la nota, la enviamos para que la actualice en la bd
+    //y en la intefaz de la app
     const handleSave = () => {
         dispatch(startSetNote(active));
     };

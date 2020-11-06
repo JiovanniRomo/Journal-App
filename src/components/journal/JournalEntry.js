@@ -7,8 +7,10 @@ export const JournalEntry = ({ id, title, body, date, url_image }) => {
 
     const dispatch = useDispatch();
 
+    //Convertimos la fecha en un formato más legible
     const noteDate = moment(date);
 
+    //Establecemos que nota cliqueo el usuario para que la app la renderice
     const handleEntryClick = () => {
         dispatch(activeNote(id, {
             title, body, date, url_image
@@ -23,6 +25,7 @@ export const JournalEntry = ({ id, title, body, date, url_image }) => {
 
 
             {
+                //Si el url de la imagen es diferente a null, la muestra
                 url_image &&
                 <div
                     className="journal__entry-picture"

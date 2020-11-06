@@ -6,6 +6,7 @@ import { Sidebar } from './Sidebar';
 
 export const JournalScreen = () => {
 
+    //extraemos la nota que el usuario seleccione
     const { active } = useSelector(state => state.notes);
 
 
@@ -17,6 +18,7 @@ export const JournalScreen = () => {
             <main>
 
                 {
+                    //si se selecciono una nota, la muestra, caso contrario muestra otra screen
                     (active)
                         ? (< NoteScreen />)
                         : (<NothingSelected />)

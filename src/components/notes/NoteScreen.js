@@ -8,15 +8,23 @@ export const NoteScreen = () => {
 
     const dispatch = useDispatch();
 
+    //extraemos la nota activa
     const { active: note } = useSelector(state => state.notes);
+
+    //Hacemos el manejo del formulario
     const [formValues, handleInputChange, reset] = useForm(note);
+
+    //Extraemos los nombres de los inputs
     const { body, title } = formValues;
 
+    //Creamos una variable mutable que no redibujará al componente
     const activeId = useRef(note.id);
 
 
     useEffect(() => {
 
+        //Si el id de nuestra nota activa es diferente al falmacenado en activeId
+        //enonces reseteamos el formulario y establecemos el nuevo id
         if (note.id !== activeId.current) {
             reset(note);
             activeId.current = note.id
