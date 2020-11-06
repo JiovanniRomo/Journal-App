@@ -39,3 +39,24 @@ export const setNotes = (notes) => ({
     type: types.notesLoad,
     payload: notes
 });
+
+export const startSetNote = (note) => {
+    return async(dispatch, getState) => {
+
+        const { uid } = getState().auth;
+
+        if(!note.url_image){
+            delete note.url_image;
+        }
+        
+        const noteToFirestore = {...note};
+        delete noteToFirestore.id;
+
+        //usamos note.id y no noteToFirestore porque en este ultimo eliminamos el id, ya que no queremos 
+        //guardarlo en la nota, puesto que ya lo tiene
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+
+
+
+    }
+};
