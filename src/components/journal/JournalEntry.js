@@ -47,8 +47,8 @@ export const JournalEntry = ({ id, title, body, date, url_image }) => {
             </div>
 
             <div className="journal__entry-date-box">
-                <span>{noteDate.format('dddd')}</span>
-                <h4>{noteDate.format('Do')}</h4>
+                <span>{noteDate.calendar()}</span>
+                {/* <h4>{noteDate.format('Do')}</h4> */}
             </div>
         </div>
     )

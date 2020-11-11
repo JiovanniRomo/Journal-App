@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { db } from "../firebase/firebase-config";
+import { fileUpload } from "../helpers/fileUpload";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
@@ -18,7 +19,7 @@ export const startNewNote = () => {
             date: new Date().getTime()
         };
 
-        //hacemos referencia al documento donde vamos a agregar la nota
+        //hacemos referencia al documento con el id del usuario donde vamos a agregar la nota
         const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
 
         //una vez agregada la nota, necesitamos que se active para que el usuario pueda modificarla
@@ -57,21 +58,21 @@ export const setNotes = (notes) => ({
 });
 
 
-//Acción para actualizar la nota, en realidad debe ser startUpdateNote, me equivoqué, xD
-export const startSetNote = (note) => {
-    return async(dispatch, getState) => {
+//Acción para actualizar la nota, en realidad debe ser startSaveNote, me equivoqué, xD
+export const startSaveNote = (note) => {
+    return async (dispatch, getState) => {
 
         //Necesitamos el id del usuario para saber quien guardará sus notas
         const { uid } = getState().auth;
 
         //Firebase no acepta undefined o null, así que si no hay imagen,
         //se elimina el url de la nota
-        if(!note.url_image){
+        if (!note.url_image) {
             delete note.url_image;
         }
-        
+
         //Duplicamos la nota
-        const noteToFirestore = {...note};
+        const noteToFirestore = { ...note };
 
         //Pero como el id no se registra en la bd, la eliminamos de la nota que se SUBIRÁ a Firebase
         delete noteToFirestore.id;
@@ -89,10 +90,43 @@ export const startSetNote = (note) => {
 export const refreshNote = (id, note) => ({
     type: types.notesUpdated,
     payload: {
-        id, 
+        id,
         note: {
             id,
             ...note
         }
     }
 });
+
+//Acción para subir una imagen ya ctualizar el url de la nota
+export const startUploading = (file) => {
+    return async(dispatch, getState) => {
+
+        //extraemos la nota activa, para cambiarla
+        const { active: activeNote } = getState().notes;
+
+        //Mostramos un pequeño loading
+        Swal.fire({
+            title:'Uploading...',
+            text: 'Please Wait...',
+            allowOutsideClick:false,
+            willOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        //Guardamos el url de la imagen (VER: fileUpload)
+        const fileUrl = await fileUpload(file);
+
+        //Asignamos el url de la nota activa
+        activeNote.url_image = fileUrl;
+
+        //ahora lo actualizamos en fireBase
+        dispatch(startSaveNote(activeNote));
+
+        //Cerramos el loading
+        Swal.close();
+    }
+};
+
+// react-journal

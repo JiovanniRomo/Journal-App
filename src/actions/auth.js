@@ -10,12 +10,12 @@ export const startLoginEmailPassword = (email, password) => {
 
         //Informamos que estamos cargando la data
         dispatch( startLoading() );
-        
-        
+
+
         firebase.auth().signInWithEmailAndPassword( email, password )
             .then( ({ user }) => {
 
-                //una vez tenemos la data del usuario, la establecemos 
+                //una vez tenemos la data del usuario, la establecemos
                 dispatch(login( user.uid, user.displayName ));
 
                 //Como ya tenemos la data, no es necesario un loading
@@ -30,8 +30,8 @@ export const startLoginEmailPassword = (email, password) => {
 
             });
 
-        
-        
+
+
     };
 };
 
@@ -110,5 +110,3 @@ export const startLogout = () => {
 export const logout = () => ({
     type: types.logout
 });
-
-
