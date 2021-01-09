@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { activeNote } from '../../actions/notes';
+import { activeNote, startDeleting } from '../../actions/notes';
 import { useForm } from '../../hooks/useForm';
 import { NotesAppBar } from './NotesAppBar'
 
@@ -15,7 +15,7 @@ export const NoteScreen = () => {
     const [formValues, handleInputChange, reset] = useForm(note);
 
     //Extraemos los nombres de los inputs
-    const { body, title } = formValues;
+    const { body, title, id } = formValues;
 
     //Creamos una variable mutable que no redibujará al componente
     const activeId = useRef(note.id);
@@ -38,6 +38,10 @@ export const NoteScreen = () => {
 
 
     }, [formValues, dispatch]);
+
+    const handleDelete = () => {
+        dispatch(startDeleting(id));
+    }
 
     return (
         <div className="notes__main-content">
@@ -76,6 +80,12 @@ export const NoteScreen = () => {
                     </div>
                 }
 
+                <button
+                    className="btn btn-danger"
+                    onClick={handleDelete}
+                >
+                    Delete
+                </button>
 
             </div>
 

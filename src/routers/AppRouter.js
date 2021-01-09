@@ -20,7 +20,7 @@ export const AppRouter = () => {
 
     const dispatch = useDispatch();
 
-    //Cremos 2 banderas que nos serviran para comprobaciones
+    //Creamos 2 banderas que nos serviran para comprobaciones
     const [checking, setChecking] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 

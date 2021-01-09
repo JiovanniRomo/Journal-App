@@ -4,8 +4,10 @@ import { fileUpload } from "../helpers/fileUpload";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
+//!NOTA IMPORTANTE: Las acciones con nombre inicial 'start' son acciones asíncronas con promesas
 
-//Acción apra crear una nueva nota
+
+//Acción para crear una nueva nota
 export const startNewNote = () => {
     return async (dispatch, getState) => {
 
@@ -24,6 +26,7 @@ export const startNewNote = () => {
 
         //una vez agregada la nota, necesitamos que se active para que el usuario pueda modificarla
         dispatch(activeNote(doc.id, newNote));
+        dispatch(addNewNote(doc.id, newNote));
     };
 };
 
@@ -36,6 +39,14 @@ export const activeNote = (id, note) => ({
         ...note
     }
 });
+
+export const addNewNote = (id, note) => ({
+    type: types.notesAddNew,
+    payload: {
+        id,
+        ...note
+    }
+})
 
 
 //Acción para cargar las notas
@@ -128,5 +139,24 @@ export const startUploading = (file) => {
         Swal.close();
     }
 };
+
+export const startDeleting = (id) => {
+    return async (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        await db.doc(`${uid}/journal/notes/${id}`).delete();
+
+        dispatch(deleteNote(id));
+
+    }
+};
+
+export const deleteNote = (id) => ({
+    type: types.notesDelete,
+    payload: id
+});
+
+export const noteLogOut = () => ({
+    type: types.notesLogoutCleaning
+});
 
 // react-journal
