@@ -15,10 +15,10 @@ export const RegisterScreen = () => {
 
     //Establecemos el manejo del form y unos valores por defecto
     const [formValues, handleInputChange] = useForm({
-        name: 'Hernando',
-        email: 'nando@gmail.com',
-        password: '123456',
-        password2: '123456',
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
     });
 
     //Extraemos los names de cada input para asignarlos a sus respectivas cajas
