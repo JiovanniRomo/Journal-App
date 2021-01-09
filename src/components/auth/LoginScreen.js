@@ -14,8 +14,8 @@ export const LoginScreen = () => {
 
     //Hacemos el manejo del form y le damos unos valores por defecto
     const [formValues, handleInputChange] = useForm({
-        email: 'test@test.com',
-        password: '123456'
+        email: '',
+        password: ''
     });
 
     //Extraemos cada valor para después asignarselo a sus inputs
