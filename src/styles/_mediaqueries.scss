@@ -41,3 +41,27 @@
         width: 100vw;
     }
 }
+
+@media (max-width: 426px) {
+    .journal__main-content {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .journal__sidebar {
+        width: 100vw;
+        height: 48vh;
+    }
+
+    .journal__new-entry {
+        font-size: 10px;
+    }
+
+    .journal__entries {
+        flex-direction: row;
+    }
+
+    .nothing__main-content {
+        width: 100vw;
+    }
+}
