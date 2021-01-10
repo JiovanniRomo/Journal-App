@@ -6,7 +6,11 @@
 
     .journal__sidebar {
         width: 100vw;
-        height: 40vh;
+        height: 37vh;
+    }
+
+    .journal__entries {
+        flex-direction: row;
     }
 
     .nothing__main-content {
