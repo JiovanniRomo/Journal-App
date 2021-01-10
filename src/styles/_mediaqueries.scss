@@ -1,10 +1,15 @@
 @media (max-width: 321px) {
     .journal__main-content {
         flex-direction: column;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
     }
 
     .journal__sidebar {
+        width: 100vw;
+        height: 40vh;
+    }
+
+    .nothing__main-content {
         width: 100vw;
     }
 }
