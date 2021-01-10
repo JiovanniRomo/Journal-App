@@ -11,7 +11,8 @@
     height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
-    width: 450px;
+    width: 33vw;
+    // width: 450px;
 }
 
 .journal__sidebar-navbar {
@@ -91,10 +92,4 @@
 
 .journal__entry-date-box span{
     font-size: 12px;
-}
-
-@media (max-width: 321px) {
-    .journal__sidebar {
-        width: 100vw;
-    }
 }
