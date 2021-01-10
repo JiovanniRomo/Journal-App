@@ -78,7 +78,7 @@
 }
 
 .journal__entry-content {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .journal__entry-date-box {
@@ -91,4 +91,10 @@
 
 .journal__entry-date-box span{
     font-size: 12px;
+}
+
+@media (max-width: 321px) {
+    .journal__sidebar {
+        width: 100vw;
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, startUploading } from '../../actions/notes';
 
@@ -8,6 +9,9 @@ export const NotesAppBar = () => {
 
     //extraemos la nota activa ya para que el usuario la modifique
     const { active } = useSelector(state => state.notes);
+    const {date} = active;
+
+    const noteDateActive = moment(date);
 
     //Una vez ha modificado la nota, la enviamos para que la actualice en la bd
     //y en la intefaz de la app
@@ -23,14 +27,14 @@ export const NotesAppBar = () => {
         e.preventDefault();
         const file = (e.target.files[0]);
 
-        if(file){
+        if (file) {
             dispatch(startUploading(file));
         }
     };
 
     return (
         <div className="notes__appbar">
-            <span>25 de octubre 2020</span>
+            <span>{noteDateActive.calendar()}</span>
 
 
             <input
