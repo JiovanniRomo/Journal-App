@@ -6,7 +6,7 @@
 
     .journal__sidebar {
         width: 100vw;
-        height: 37vh;
+        height: 38vh;
     }
 
     .journal__entries {
@@ -15,6 +15,10 @@
 
     .nothing__main-content {
         width: 100vw;
+    }
+
+    .notes__main-content {
+        margin-top: 10px;
     }
 }
 
@@ -40,6 +44,10 @@
     .nothing__main-content {
         width: 100vw;
     }
+
+    .notes__content {
+        height: auto;
+    }
 }
 
 @media (max-width: 426px) {
@@ -63,5 +71,13 @@
 
     .nothing__main-content {
         width: 100vw;
+    }
+
+    .notes__textarea {
+        // padding: 20px;
+        flex: 3 3 auto;
+    }
+
+    .notes__image img {
     }
 }
