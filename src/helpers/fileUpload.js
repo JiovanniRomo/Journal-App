@@ -5,7 +5,7 @@ export const fileUpload = async (file) => {
     //Nuestra api debe llevar los campos de upload_preset y file, por ello los agregamos (eso lo hacemos por el FormData)
     const formData = new FormData();
 
-    //Cremosuna key y le asignamos su valor
+    //Cremos una key y le asignamos su valor
     formData.append('upload_preset', 'react-journal');
     formData.append('file', file);
 
