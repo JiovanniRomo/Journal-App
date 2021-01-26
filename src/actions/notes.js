@@ -109,7 +109,7 @@ export const refreshNote = (id, note) => ({
     }
 });
 
-//Acción para subir una imagen ya ctualizar el url de la nota
+//Acción para subir una imagen y actualizar el url de la nota
 export const startUploading = (file) => {
     return async(dispatch, getState) => {
 
