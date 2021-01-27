@@ -74,43 +74,56 @@ export const RegisterScreen = () => {
                 }
 
 
-                <input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    className="auth__input"
-                    autoComplete="off"
-                    value={name}
-                    onChange={handleInputChange}
-                />
+                <label>
+                    Nombre:
+                    <input
+                        type="text"
+                        // placeholder="Name"
+                        name="name"
+                        className="auth__input"
+                        autoComplete="off"
+                        value={name}
+                        onChange={handleInputChange}
+                    />
+                </label>
 
-                <input
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    className="auth__input"
-                    autoComplete="off"
-                    value={email}
-                    onChange={handleInputChange}
-                />
+                <label>
+                    Email:
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="auth__input"
-                    value={password}
-                    onChange={handleInputChange}
-                />
+                    <input
+                        type="text"
+                        // placeholder="Email"
+                        name="email"
+                        className="auth__input"
+                        autoComplete="off"
+                        value={email}
+                        onChange={handleInputChange}
+                    />
+                </label>
 
-                <input
-                    type="password"
-                    placeholder="Confirm password"
-                    name="password2"
-                    className="auth__input"
-                    value={password2}
-                    onChange={handleInputChange}
-                />
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        // placeholder="Password"
+                        name="password"
+                        className="auth__input"
+                        value={password}
+                        onChange={handleInputChange}
+                    />
+                </label>
+
+                <label>
+                    Repeat your password:
+                    <input
+                        type="password"
+                        // placeholder="Confirm password"
+                        name="password2"
+                        className="auth__input"
+                        value={password2}
+                        onChange={handleInputChange}
+                    />
+                </label>
 
 
                 <button
