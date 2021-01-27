@@ -9,12 +9,11 @@ const firebaseConfig = {
   projectId: "journal-app-84c19",
   storageBucket: "journal-app-84c19.appspot.com",
   messagingSenderId: "245383739535",
-  appId: "1:245383739535:web:1e522df601282877b618fa",
-  measurementId: "G-6WQE105GLY"
+  appId: "1:245383739535:web:1e522df601282877b618fa"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+
 
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
