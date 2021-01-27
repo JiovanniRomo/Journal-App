@@ -39,29 +39,34 @@ export const LoginScreen = () => {
         <>
             <h3 className="auth__title">Login</h3>
 
-            <form 
+            <form
                 onSubmit={handleLogin}
                 className="animate__animated animate__fadeIn animate__faster"
             >
+                <label>
+                    Email:
+                    <input
+                        type="text"
+                        // placeholder="correo"
+                        name="email"
+                        className="auth__input"
+                        autoComplete="off"
+                        value={email}
+                        onChange={handleInputChange}
+                    />
+                </label>
 
-                <input
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    className="auth__input"
-                    autoComplete="off"
-                    value={email}
-                    onChange={handleInputChange}
-                />
-
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="auth__input"
-                    value={password}
-                    onChange={handleInputChange}
-                />
+                <label>
+                    Contraseña:
+                    <input
+                        type="password"
+                        // placeholder="Password"
+                        name="password"
+                        className="auth__input"
+                        value={password}
+                        onChange={handleInputChange}
+                    />
+                </label>
 
 
                 {/* Como estamos esperando a recibir la información, 
